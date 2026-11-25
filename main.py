@@ -14,12 +14,17 @@ PITCH = (
 )
 
 
+def write_entry(path: str, text: str) -> None:
+    """Write the pitch to *path*, creating the output directory first."""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(text + "\n")
+
+
 def main() -> None:
     output_dir = "/output"
-    os.makedirs(output_dir, exist_ok=True)
     path = os.path.join(output_dir, "entry.txt")
-    with open(path, "w", encoding="utf-8") as handle:
-        handle.write(PITCH + "\n")
+    write_entry(path, PITCH)
 
 
 if __name__ == "__main__":
